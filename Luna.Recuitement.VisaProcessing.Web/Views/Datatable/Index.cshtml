@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.css">
+</head>
+<body>
+    <table id="dataTableA" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <!-- Add more columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.11.6/api/fnServerData.js"></script>
+    <script>
+        jQuery.noConflict();
+        jQuery(document).ready(function () {
+            $('#dataTableA').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": "/Datatable/LoadData", // Replace with your server-side endpoint
+                    "type": "POST"
+                },
+                "columns": [
+                    { "data": "id" },
+                    { "data": "name" }
+                    // Add more columns mapping as needed
+                ]
+            });
+        });
+    </script>
+</body>
+</html>
